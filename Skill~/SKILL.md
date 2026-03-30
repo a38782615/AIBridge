@@ -356,6 +356,10 @@ AIBridgeCLI.exe prefab unpack --gameObjectPath "Player(Clone)" --completely true
 # Get Info
 AIBridgeCLI.exe prefab get_info --prefabPath "Assets/Prefabs/Player.prefab"
 
+# Get Hierarchy
+AIBridgeCLI.exe prefab get_hierarchy --prefabPath "Assets/Prefabs/Player.prefab"
+AIBridgeCLI.exe prefab get_hierarchy --prefabPath "Assets/Prefabs/UI/MainPanel.prefab" --depth 4 --includeInactive false
+
 # Apply Overrides
 AIBridgeCLI.exe prefab apply --gameObjectPath "Player(Clone)"
 ```
@@ -425,6 +429,9 @@ AIBridgeCLI.exe screenshot gif --frameCount 50 --raw
 
 # With custom parameters
 AIBridgeCLI.exe screenshot gif --frameCount 100 --fps 25 --scale 0.5 --colorCount 128 --raw
+
+# With delayed start (useful for manual capture timing)
+AIBridgeCLI.exe screenshot gif --frameCount 100 --fps 25 --startDelay 0.5 --raw
 ```
 
 **Parameters:**
@@ -435,6 +442,7 @@ AIBridgeCLI.exe screenshot gif --frameCount 100 --fps 25 --scale 0.5 --colorCoun
 | `--fps` | 10-30 | 25 | Frames per second |
 | `--scale` | 0.25-1.0 | 0.5 | Resolution scale factor |
 | `--colorCount` | 64-256 | 128 | GIF palette color count |
+| `--startDelay` | 0-5 seconds | 0 | Delay before capture starts |
 
 **Response:**
 

@@ -105,7 +105,7 @@ cn.lys.aibridge/
 
 ### 编辑器模式
 
-AI Bridge 在 Unity Editor 打开时自动启动。命令从 `Tools~/Exchange/commands/` 目录处理。
+AI Bridge 在 Unity Editor 打开时自动启动。命令从 `AIBridgeCache/commands/` 目录处理。
 
 #### 菜单项
 - `AIBridge/Process Commands Now` - 立即处理待处理的命令
@@ -131,11 +131,17 @@ AIBridgeCLI transform set_position --path "MyCube" --x 1 --y 2 --z 3
 # 获取场景层级
 AIBridgeCLI scene get_hierarchy
 
+# 获取 Prefab 层级结构
+AIBridgeCLI prefab get_hierarchy --prefabPath "Assets/Prefabs/Player.prefab"
+
 # 捕获截图
 AIBridgeCLI screenshot game
 
 # 录制 GIF
 AIBridgeCLI screenshot gif --frameCount 60 --fps 20
+
+# 延迟开始录制 GIF
+AIBridgeCLI screenshot gif --frameCount 60 --fps 20 --startDelay 0.5
 ```
 
 ### 可用命令
@@ -149,7 +155,7 @@ AIBridgeCLI screenshot gif --frameCount 60 --fps 20
 | `inspector` | Component/Inspector 操作 |
 | `selection` | 选择操作 |
 | `scene` | 场景操作（加载、保存、层级） |
-| `prefab` | 预制体操作（实例化、保存、解包） |
+| `prefab` | 预制体操作（实例化、信息查看、保存、解包） |
 | `asset` | AssetDatabase 操作 |
 | `menu_item` | 调用 Unity 菜单项 |
 | `get_logs` | 获取 Unity 控制台日志 |
@@ -206,7 +212,7 @@ AIBridgeRuntime.Instance.RegisterHandler(new MyCustomHandler());
 
 ## 命令协议
 
-命令是放置在 `Tools~/Exchange/commands/` 中的 JSON 文件：
+命令是放置在 `AIBridgeCache/commands/` 中的 JSON 文件：
 
 ```json
 {
@@ -220,7 +226,7 @@ AIBridgeRuntime.Instance.RegisterHandler(new MyCustomHandler());
 }
 ```
 
-结果返回在 `Tools~/Exchange/results/` 中：
+结果返回在 `AIBridgeCache/results/` 中：
 
 ```json
 {

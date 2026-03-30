@@ -104,7 +104,7 @@ cn.lys.aibridge/
 
 ### Editor Mode
 
-AI Bridge automatically starts when Unity Editor opens. Commands are processed from `Tools~/Exchange/commands/`.
+AI Bridge automatically starts when Unity Editor opens. Commands are processed from `AIBridgeCache/commands/`.
 
 #### Menu Items
 - `AIBridge/Process Commands Now` - Process pending commands immediately
@@ -130,11 +130,17 @@ AIBridgeCLI transform set_position --path "MyCube" --x 1 --y 2 --z 3
 # Get scene hierarchy
 AIBridgeCLI scene get_hierarchy
 
+# Get prefab hierarchy
+AIBridgeCLI prefab get_hierarchy --prefabPath "Assets/Prefabs/Player.prefab"
+
 # Capture screenshot
 AIBridgeCLI screenshot game
 
 # Record GIF
 AIBridgeCLI screenshot gif --frameCount 60 --fps 20
+
+# Record GIF with delayed start
+AIBridgeCLI screenshot gif --frameCount 60 --fps 20 --startDelay 0.5
 ```
 
 ### Available Commands
@@ -148,7 +154,7 @@ AIBridgeCLI screenshot gif --frameCount 60 --fps 20
 | `inspector` | Component/Inspector operations |
 | `selection` | Selection operations |
 | `scene` | Scene operations (load, save, hierarchy) |
-| `prefab` | Prefab operations (instantiate, save, unpack) |
+| `prefab` | Prefab operations (instantiate, inspect, save, unpack) |
 | `asset` | AssetDatabase operations |
 | `menu_item` | Invoke Unity menu items |
 | `get_logs` | Get Unity console logs |
@@ -205,7 +211,7 @@ AIBridgeRuntime.Instance.RegisterHandler(new MyCustomHandler());
 
 ## Command Protocol
 
-Commands are JSON files placed in `Tools~/Exchange/commands/`:
+Commands are JSON files placed in `AIBridgeCache/commands/`:
 
 ```json
 {
@@ -219,7 +225,7 @@ Commands are JSON files placed in `Tools~/Exchange/commands/`:
 }
 ```
 
-Results are returned in `Tools~/Exchange/results/`:
+Results are returned in `AIBridgeCache/results/`:
 
 ```json
 {
